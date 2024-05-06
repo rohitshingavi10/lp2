@@ -1,0 +1,32 @@
+import random
+
+# Define responses
+responses = {
+    "greeting": ["Hello!", "Hi there!", "Hey!"],
+    "goodbye": ["Goodbye!", "Bye!", "See you later!"],
+    "thanks": ["You're welcome!", "No problem!", "Anytime!"],
+    "default": ["I'm sorry, I didn't understand that.", "Could you please rephrase that?", "I'm still learning!"],
+}
+
+# Function to generate responses
+def get_response(message):
+    message = message.lower()
+    if any(word in message for word in ["hi", "hello", "hey"]):
+        return random.choice(responses["greeting"])
+    elif any(word in message for word in ["bye", "goodbye"]):
+        return random.choice(responses["goodbye"])
+    elif "thank" in message:
+        return random.choice(responses["thanks"])
+    else:
+        return random.choice(responses["default"])
+
+# Main loop
+print("Chatbot: Hello! How can I assist you today?")
+while True:
+    user_input = input("You: ")
+    if user_input.lower() == "exit":
+        print("Chatbot: Goodbye!")
+        break
+    else:
+        response = get_response(user_input)
+        print("Chatbot:", response)
